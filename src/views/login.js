@@ -1,7 +1,8 @@
 import React from "react";
 import Card from '../components/card'
-import FormGroup from "../components/form-group";
+import FormGroup from "../components/form-group"
 import { withRouter } from 'react-router-dom'
+import axios from 'axios'
 
 class Login extends React.Component{
 
@@ -14,11 +15,18 @@ class Login extends React.Component{
         disabled : false
      }
     entrar = () => {
-        console.log(this.state)
+        axios.post('http://localhost:8080/api/usuarios/autenticar', {
+            email: this.state.email,
+            senha: this.state.senha
+        }).then( response => {
+            console.log(response)
+        }).catch( erro => {
+            console.log(erro.response)
+        })
     }
 
     prepareCadastrar = () => {
-        this.props.history.push('cadastro-usuario')
+        this.props.history.push('/cadastro-usuario')
     }
 
     render(){
@@ -43,7 +51,7 @@ class Login extends React.Component{
                                         <FormGroup Label="Senha: *" htmlFor="exampleInputPassword1">
                                             <input type="password" 
                                                 value={this.state.senha}
-                                                onChange={e => this.setState({senha: e.target.senha})}
+                                                onChange={e => this.setState({senha: e.target.value})}
                                                 className="form-control" 
                                                 id="exampleInputPassword1" 
                                                 placeholder="Password" />
