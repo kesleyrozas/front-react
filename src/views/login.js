@@ -2,7 +2,10 @@ import React from "react";
 import Card from '../components/card'
 import FormGroup from "../components/form-group"
 import { withRouter } from 'react-router-dom'
+
 import UsuarioService from "../app/service/usuarioService";
+import LocalStorageService from "../app/service/localStorageService";
+import { mensagemErro } from '../components/toastr'
 
 class Login extends React.Component{
 
@@ -17,8 +20,8 @@ class Login extends React.Component{
      }
 
     constructor(){
-    super();
-    this.service = new UsuarioService();
+        super();
+        this.service = new UsuarioService();
     }
 
     entrar = () => {
@@ -26,10 +29,10 @@ class Login extends React.Component{
             email: this.state.email,
             senha: this.state.senha
         }).then( response => {
-            localStorage.setItem('_usuario_logado', JSON.stringify(response.data) )
+            LocalStorageService.adicionarItem('_usuario_logado', JSON.stringify(response.data) )
             this.props.history.push('/home')
         }).catch( erro => {
-            this.setState({mensagem: erro.response.data})
+            mensagemErro(erro.response.data)
         })
     }
 
@@ -68,7 +71,7 @@ class Login extends React.Component{
                                                 placeholder="Password" />
                                         </FormGroup>
                                         <br/>
-                                        <button onClick={this.entrar} type="button" className="btn btn-success">Entrar</button>
+                                        <button onClick={this.entrar} type="button" className="btn btn-success mr-2">Entrar</button>
                                         <button onClick={this.prepareCadastrar} type="button" className="btn btn-danger">Cadastrar</button>
                                     </fieldset>
                                 </div>
