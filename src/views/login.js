@@ -29,7 +29,7 @@ class Login extends React.Component{
             email: this.state.email,
             senha: this.state.senha
         }).then( response => {
-            LocalStorageService.adicionarItem('_usuario_logado', JSON.stringify(response.data) )
+            LocalStorageService.adicionarItem('_usuario_logado', response.data)
             this.props.history.push('/home')
         }).catch( erro => {
             mensagemErro(erro.response.data)
@@ -71,7 +71,7 @@ class Login extends React.Component{
                                                 placeholder="Password" />
                                         </FormGroup>
                                         <br/>
-                                        <button onClick={this.entrar} type="button" className="btn btn-success mr-2">Entrar</button>
+                                        <button onClick={this.entrar} type="button" className="btn btn-success m-2">Entrar</button>
                                         <button onClick={this.prepareCadastrar} type="button" className="btn btn-danger">Cadastrar</button>
                                     </fieldset>
                                 </div>

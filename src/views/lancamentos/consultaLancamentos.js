@@ -77,6 +77,10 @@ class ConsultaLancamentos extends React.Component{
         })
     }
 
+    prepararCadastroLancamento = () => {
+        this.props.history.push('/cadastro-lancamentos')
+    }
+
     render(){
 
         const meses = this.lancamentosService.obterListaMeses();
@@ -98,7 +102,7 @@ class ConsultaLancamentos extends React.Component{
                                 <input type="text"
                                         id="inputAno"
                                         value={this.state.ano}
-                                        onChange={e => this.state({ano: e.target.value})}
+                                        onChange={e => this.setState({ano: e.target.value})}
                                         className="form-control"
                                         placeholder="Digite o ano"/>
                             </FormGroup>
@@ -106,7 +110,7 @@ class ConsultaLancamentos extends React.Component{
                                 <SelectMenu id="inputMes"
                                             className="form-control" 
                                             value={this.state.mes}
-                                            onChange={e => this.state({mes: e.target.value})}
+                                            onChange={e => this.setState({mes: e.target.value})}
                                             lista={meses}>
                                 </SelectMenu>
                             </FormGroup>
@@ -114,7 +118,7 @@ class ConsultaLancamentos extends React.Component{
                                 <SelectMenu id="inputTipo"
                                             className="form-control" 
                                             value={this.state.tipo}
-                                            onChange={e => this.state({tipo: e.target.value})}
+                                            onChange={e => this.setState({tipo: e.target.value})}
                                             lista={tipos}>
                                 </SelectMenu>
                             </FormGroup>
@@ -122,12 +126,12 @@ class ConsultaLancamentos extends React.Component{
                                 <input type="text"
                                             id="inputDescricao"
                                             value={this.state.descricao}
-                                            onChange={e => this.state({descricao: e.target.value})}
+                                            onChange={e => this.setState({descricao: e.target.value})}
                                             className="form-control"
                                             placeholder="Digite uma descrição"/>
                             </FormGroup>
-                            <button onClick={this.buscar} type="button" className="btn btn-success">Buscar</button>
-                            <button type="button" className="btn btn-danger">Cadastrar</button>
+                            <button onClick={this.buscar} type="button" className="btn btn-success m-2">Buscar</button>
+                            <button onClick={this.prepararCadastroLancamento} type="button" className="btn btn-danger">Cadastrar</button>
                         </div>
                     </div>
                 </div>

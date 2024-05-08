@@ -22,7 +22,7 @@ toastr.options = {
  }
 
  export function mensagemErro(mensagem){
-    mostrarMensagem('Erro', mensagem, 'error')
+    mostrarMensagem('Ops Error', mensagem, 'error')
  }
 
  export function mensagemSucesso(mensagem){

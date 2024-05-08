@@ -29,7 +29,7 @@ class CadastroLancamentos extends React.Component{
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
         const {descricao, mes, ano, tipo, valor} = this.state;
         const lancamento = {descricao, mes, ano, tipo, valor, usuario: usuarioLogado.id };
-        console.log(lancamento);
+        //console.log(lancamento);
         this.lancamentosService
         .salvar(lancamento)
         .then(response =>{
@@ -123,7 +123,7 @@ class CadastroLancamentos extends React.Component{
                 </div>
                 <div className="row">
                     <div className="col-md-6">
-                        <button className="btn btn-success" onClick={this.submit}>Salvar</button>
+                        <button className="btn btn-success m-2" onClick={this.submit}>Salvar</button>
                         <button className="btn btn-danger">Cancelar</button>
                     </div>
                 </div>
