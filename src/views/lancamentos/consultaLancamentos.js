@@ -32,6 +32,7 @@ class ConsultaLancamentos extends React.Component{
 
         if(!this.state.ano){
             messages.mensagemErro("O preenchimento do ano e obrigatório")
+            return;
         }
 
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado')
@@ -51,8 +52,24 @@ class ConsultaLancamentos extends React.Component{
         })
     }
 
-    editarAction = (id) => {
+    editar = (id) => {
+        this.props.history.push(`/cadastro-lancamentos/${id}`)
 
+    }
+
+    alterarStatus = (lancamento, status) => {
+        this.lancamentosService
+            .alterarStatus(lancamento.id, status)
+            .then(response =>{
+                const lancamentos = this.state.lancamentos;
+                const index = lancamentos.indexOf(lancamento);
+                if(index !== -1){
+                    lancamento['status'] = status;
+                    lancamentos[index] = lancamento;
+                    this.setState({lancamento});
+                }
+                messages.mensagemSucesso("Status atualizado com sucesso!")
+            })
     }
 
     abrirConfirmacao = (lancamento) => {
@@ -130,8 +147,18 @@ class ConsultaLancamentos extends React.Component{
                                             className="form-control"
                                             placeholder="Digite uma descrição"/>
                             </FormGroup>
-                            <button onClick={this.buscar} type="button" className="btn btn-success m-2">Buscar</button>
-                            <button onClick={this.prepararCadastroLancamento} type="button" className="btn btn-danger">Cadastrar</button>
+
+                            <button onClick={this.buscar} 
+                                type="button" 
+                                className="btn btn-success m-2">
+                                <i className="pi pi-search"></i> Buscar
+                            </button>
+                            <button onClick={this.prepararCadastroLancamento}
+                                type="button" 
+                                className="btn btn-danger">
+                                <i className="pi pi-plus"></i> Cadastrar
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -141,7 +168,8 @@ class ConsultaLancamentos extends React.Component{
                         <div className="bs-componet">
                             <LancamentosTable lancamentos={this.state.lancamentos}
                                                 deletar={this.abrirConfirmacao}
-                                                editarAction={this.editar}/>
+                                                editarAction={this.editar}
+                                                alterarStatus={this.alterarStatus}/>
                         </div>
                     </div>
                 </div>
