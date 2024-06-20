@@ -15,7 +15,7 @@ export default props =>{
                     <button 
                         type="button" 
                         title="Efetivar"
-                        disabled={ lancamento.status !== 'PENDENTE' }
+                        disabled={ lancamentos.status !== 'PENDENTE' }
                         className="btn btn-success" 
                         onClick={e => props.alterarStatus(lancamentos, 'EFETIVADO')}>
                             <i className="pi pi-check"></i>
@@ -23,7 +23,7 @@ export default props =>{
                     <button 
                         type="button" 
                         title="Cancelar"
-                        disabled={ lancamento.status !== 'PENDENTE' }
+                        disabled={ lancamentos.status !== 'PENDENTE' }
                         className="btn btn-warning" 
                         onClick={e => props.alterarStatus(lancamentos, 'CANCELADO')}>
                             <i className="pi pi-times"></i>

@@ -61,6 +61,7 @@ class CadastroLancamentos extends React.Component{
         .salvar(lancamento)
         .then(response =>{
             messages.mensagemSucesso("Lançamento cadastrado com sucesso")
+            this.props.history.push('/consultaLancamentos')
         }).catch(error =>{
             messages.mensagemErro(error.response.data)
         })
@@ -166,12 +167,20 @@ class CadastroLancamentos extends React.Component{
                     <div className="col-md-6">
                         {   this.state.atualizando ? 
                             (
-                                <button className="btn btn-success m-2" onClick={this.atualizar}>Atualizar</button>                        
+                                <button className="btn btn-success m-2" 
+                                        onClick={this.atualizar}>
+                                        <i className="pi pi-refresh"></i> Atualizar
+                                </button>                        
                             ) : (
-                                <button className="btn btn-success m-2" onClick={this.submit}>Salvar</button>
+                                <button className="btn btn-success m-2" 
+                                        onClick={this.submit}>
+                                        <i className="pi pi-save"></i> Salvar
+                                </button>
                             )
                         }
-                        <button className="btn btn-danger">Cancelar</button>
+                        <button className="btn btn-danger">
+                                <i className="pi pi-times"></i> Cancelar
+                        </button>
                     </div>
                 </div>
 

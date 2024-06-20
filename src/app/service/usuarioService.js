@@ -1,4 +1,3 @@
-import { error } from "toastr";
 import ApiService from "../apiservice";
 import ErroValidacao from "../exception/ErroValidacao";
 
