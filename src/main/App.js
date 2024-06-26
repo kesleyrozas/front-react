@@ -12,16 +12,19 @@ import 'toastr/build/toastr.css'
 
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import ProvedorAutenticacao from "./provedorAutenticacao"
 
 class App extends React.Component {
   render(){
     return(
-      <div>
-        <NavBar/>
-        <div className="container">
-          <Rotas/>
+      <ProvedorAutenticacao>
+        <div>
+          <NavBar/>
+          <div className="container">
+            <Rotas/>
+          </div>
         </div>
-      </div>
+      </ProvedorAutenticacao>
     )   
   }
 }
